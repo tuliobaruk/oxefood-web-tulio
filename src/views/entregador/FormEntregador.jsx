@@ -1,9 +1,10 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import InputMask from 'react-input-mask';
-import { Button, Container, Divider, Form, Icon } from 'semantic-ui-react';
+import MenuSistema from "../../MenuSistema";
+import { Button, Container, Divider, Form, Icon, Radio} from 'semantic-ui-react';
 
-export default function FormEntregador () {
+export default function FormEntregador() {
 
     const [nome, setNome] = useState();
     const [cpf, setCpf] = useState();
@@ -17,40 +18,43 @@ export default function FormEntregador () {
 
     function salvar() {
 
-		let entregadorRequest = {
-		     nome: nome,
-		     cpf: cpf,
-             rg: rg,
-		     dataNascimento: dataNascimento,
-		     foneCelular: foneCelular,
-		     foneFixo: foneFixo,
-             qtdEntregasRealizadas: qtdEntregasRealizadas,
-             valorFrete: valorFrete,
-             ativo: ativo
-		}
-	
-		axios.post("http://localhost:8080/api/entregador", entregadorRequest)
-		.then((response) => {
-		     console.log('Entregador cadastrado com sucesso.')
-		})
-		.catch((error) => {
-		     console.log('Erro ao incluir o entregador.')
-		})
-	}
+        let entregadorRequest = {
+            nome: nome,
+            cpf: cpf,
+            rg: rg,
+            dataNascimento: dataNascimento,
+            foneCelular: foneCelular,
+            foneFixo: foneFixo,
+            qtdEntregasRealizadas: qtdEntregasRealizadas,
+            valorFrete: valorFrete,
+            ativo: ativo
+        }
+
+        axios.post("http://localhost:8080/api/entregador", entregadorRequest)
+            .then((response) => {
+                console.log('Entregador cadastrado com sucesso.')
+            })
+            .catch((error) => {
+                console.log('Erro ao incluir o entregador.')
+            })
+    }
 
     return (
 
         <div>
 
-            <div style={{marginTop: '3%'}}>
+            <MenuSistema tela={'entregador'} />
+
+
+            <div style={{ marginTop: '3%' }}>
 
                 <Container textAlign='justified' >
 
-                    <h2> <span style={{color: 'darkgray'}}> Entregador &nbsp;<Icon name='angle double right' size="small" /> </span> Cadastro </h2>
+                    <h2> <span style={{ color: 'darkgray' }}> Entregador &nbsp;<Icon name='angle double right' size="small" /> </span> Cadastro </h2>
 
                     <Divider />
 
-                    <div style={{marginTop: '4%'}}>
+                    <div style={{ marginTop: '4%' }}>
 
                         <Form>
 
@@ -70,74 +74,122 @@ export default function FormEntregador () {
                                     fluid
                                     label='CPF'
                                     width={4}
-                                    >
+                                >
                                     <InputMask
                                         required
                                         mask="999.999.999-99"
                                         value={cpf}
                                         onChange={e => setCpf(e.target.value)}
-                                    /> 
+                                    />
                                 </Form.Input>
 
-                                
+
                                 <Form.Input
                                     fluid
                                     label='RG'
                                     width={4}
-                                    >
+                                >
                                     <InputMask
-                                        required
                                         mask="9.999.999"
                                         value={cpf}
-                                        onChange={e => setCpf(e.target.value)}
-                                    /> 
+                                        onChange={e => setRg(e.target.value)}
+                                    />
                                 </Form.Input>
 
                             </Form.Group>
-                            
+
                             <Form.Group>
-
-                                <Form.Input
-                                    fluid
-                                    label='Fone Celular'
-                                    width={6}>
-                                    <InputMask 
-                                        mask="(99) 9999.9999"
-                                        value={foneCelular}
-                                        onChange={e => setFoneCelular(e.target.value)}
-                                    /> 
-                                </Form.Input>
-
-                                <Form.Input
-                                    fluid
-                                    label='Fone Fixo'
-                                    width={6}>
-                                    <InputMask 
-                                        mask="(99) 9999.9999"
-                                        value={foneFixo}
-                                        onChange={e => setFoneFixo(e.target.value)}
-                                    /> 
-                                </Form.Input>
 
                                 <Form.Input
                                     fluid
                                     label='Data Nascimento'
                                     width={6}
                                 >
-                                    <InputMask 
-                                        mask="99/99/9999" 
+                                    <InputMask
+                                        mask="99/99/9999"
                                         maskChar={null}
                                         placeholder="Ex: 20/03/1985"
                                         value={dataNascimento}
                                         onChange={e => setDataNascimento(e.target.value)}
-                                    /> 
+                                    />
                                 </Form.Input>
 
+                                <Form.Input
+                                    required
+                                    fluid
+                                    label='Fone Celular'
+                                    width={6}>
+                                    <InputMask
+                                        mask="(99) 99999.9999"
+                                        value={foneCelular}
+                                        onChange={e => setFoneCelular(e.target.value)}
+                                    />
+                                </Form.Input>
+
+                                <Form.Input
+                                    fluid
+                                    label='Fone Fixo'
+                                    width={6}>
+                                    <InputMask
+                                        mask="(99) 9999.9999"
+                                        value={foneFixo}
+                                        onChange={e => setFoneFixo(e.target.value)}
+                                    />
+                                </Form.Input>
+
+                                <Form.Input
+                                    fluid
+                                    label='Qtd Entregas Realizadas'
+                                    width={6}>
+                                    <InputMask
+                                        value={qtdEntregasRealizadas}
+                                        onChange={e => setQtdEntregasRealizadas(e.target.value)}
+                                    />
+                                </Form.Input>
+
+                                <Form.Input
+                                    fluid
+                                    label='Valor Por Frete'
+                                    width={6}>
+                                    <InputMask
+                                        value={valorFrete}
+                                        onChange={e => setValorFrete(e.target.value)}
+                                    />
+                                </Form.Input>
                             </Form.Group>
-                        
+{/* 
+                            <Form.Group>
+                                <Form.Input
+                                    fluid
+                                    label='Rua'
+                                    width={12}
+                                    value={foneCelular}
+                                    onChange={e => setFoneCelular(e.target.value)}
+                                >
+                                </Form.Input>
+
+                                <Form.Input
+                                    fluid
+                                    label='Número'
+                                    width={12}
+                                    value={numero}
+                                    onChange={e => setFoneCelular(e.target.value)}
+                                >
+                                </Form.Input>
+                            </Form.Group> */}
+
+                            <Form.Group>
+                                <Form.Radio
+                                toggle
+                                label="Ativo"
+                                value={ativo}
+                                onChange={e => setAtivo(e.target.value)}
+                                ></Form.Radio>
+                            </Form.Group>
+
                         </Form>
-                        
-                        <div style={{marginTop: '4%'}}>
+
+                        <div style={{ marginTop: '4%' }}>
 
                             <Button
                                 type="button"
@@ -150,7 +202,7 @@ export default function FormEntregador () {
                                 <Icon name='reply' />
                                 Voltar
                             </Button>
-                                
+
                             <Button
                                 inverted
                                 circular
@@ -167,7 +219,7 @@ export default function FormEntregador () {
                         </div>
 
                     </div>
-                    
+
                 </Container>
             </div>
         </div>
