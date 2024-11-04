@@ -14,7 +14,14 @@ export default function FormEntregador() {
     const [foneFixo, setFoneFixo] = useState();
     const [qtdEntregasRealizadas, setQtdEntregasRealizadas] = useState();
     const [valorFrete, setValorFrete] = useState();
-    const [ativo, setAtivo] = useState();
+    const [enderecoRua, setenderecoRua] = useState();
+    const [enderecoComplemento, setenderecoComplemento] = useState();
+    const [enderecoNumero, setenderecoNumero] = useState();
+    const [enderecoBairro, setenderecoBairro] = useState();
+    const [enderecoCidade, setenderecoCidade] = useState();
+    const [enderecoCep, setenderecoCep] = useState();
+    const [enderecoUf, setenderecoUf] = useState();
+    const [ativo, setAtivo] = useState(true);
 
     function salvar() {
 
@@ -27,6 +34,13 @@ export default function FormEntregador() {
             foneFixo: foneFixo,
             qtdEntregasRealizadas: qtdEntregasRealizadas,
             valorFrete: valorFrete,
+            enderecoRua: enderecoRua,
+            enderecoComplemento: enderecoComplemento,
+            enderecoNumero: enderecoNumero,
+            enderecoBairro: enderecoBairro,
+            enderecoCidade: enderecoCidade,
+            enderecoCep: enderecoCep,
+            enderecoUf: enderecoUf,
             ativo: ativo
         }
 
@@ -157,26 +171,79 @@ export default function FormEntregador() {
                                     />
                                 </Form.Input>
                             </Form.Group>
-{/* 
+
                             <Form.Group>
                                 <Form.Input
                                     fluid
                                     label='Rua'
-                                    width={12}
-                                    value={foneCelular}
-                                    onChange={e => setFoneCelular(e.target.value)}
+                                    width={13}
+                                    value={enderecoRua}
+                                    onChange={e => setenderecoRua(e.target.value)}
                                 >
                                 </Form.Input>
 
                                 <Form.Input
                                     fluid
                                     label='Número'
-                                    width={12}
-                                    value={numero}
-                                    onChange={e => setFoneCelular(e.target.value)}
+                                    width={3}
+                                    value={enderecoNumero}
+                                    onChange={e => setenderecoNumero(e.target.value)}
                                 >
                                 </Form.Input>
-                            </Form.Group> */}
+                            </Form.Group>
+
+                            <Form.Group>
+                                <Form.Input
+                                    fluid
+                                    label='Bairro'
+                                    width={7}
+                                    value={enderecoBairro}
+                                    onChange={e => setenderecoBairro(e.target.value)}
+                                >
+                                </Form.Input>
+
+                                <Form.Input
+                                    fluid
+                                    label='Cidade'
+                                    width={6}
+                                    value={enderecoCidade}
+                                    onChange={e => setenderecoCidade(e.target.value)}
+                                >
+                                </Form.Input>
+
+                                <Form.Input
+                                    fluid
+                                    label='CEP'
+                                    width={3}
+                                    value={enderecoCep}
+                                    onChange={e => setenderecoCep(e.target.value)}
+                                >
+                                </Form.Input>
+
+                            </Form.Group>
+
+                            <Form.Group>
+                                <Form.Input
+                                    fluid
+                                    label='UF'
+                                    width={16}
+                                    value={enderecoUf}
+                                    onChange={e => setenderecoUf(e.target.value)}
+                                >
+                                </Form.Input>
+                            </Form.Group>
+
+                            
+                            <Form.Group>
+                                <Form.Input
+                                    fluid
+                                    label='Complemento'
+                                    width={16}
+                                    value={enderecoComplemento}
+                                    onChange={e => setenderecoComplemento(e.target.value)}
+                                >
+                                </Form.Input>
+                            </Form.Group>
 
                             <Form.Group>
                                 <Form.Radio
