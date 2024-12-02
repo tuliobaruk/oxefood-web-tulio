@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import InputMask from 'react-input-mask';
 import MenuSistema from '../../MenuSistema';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button, Container, Divider, Form, Icon } from 'semantic-ui-react';
 import { notifyError, notifySuccess } from '../util/Util';
 
@@ -13,6 +13,8 @@ export default function FormCliente() {
     const [dataNascimento, setDataNascimento] = useState();
     const [foneCelular, setFoneCelular] = useState();
     const [foneFixo, setFoneFixo] = useState();
+
+    const navigate = useNavigate();
 
     function salvar() {
 
@@ -27,6 +29,7 @@ export default function FormCliente() {
         axios.post("http://localhost:8080/api/cliente", clienteRequest)
             .then((response) => {
                 notifySuccess('Cliente cadastrado com sucesso.')
+                navigate('/list-cliente');
             })
             .catch((error) => {
                 if (error.response.data.errors != undefined) {
