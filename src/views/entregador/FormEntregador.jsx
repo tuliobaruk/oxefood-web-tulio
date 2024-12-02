@@ -105,7 +105,7 @@ export default function FormEntregador() {
                                 >
                                     <InputMask
                                         mask="9.999.999"
-                                        value={cpf}
+                                        value={rg}
                                         onChange={e => setRg(e.target.value)}
                                     />
                                 </Form.Input>
